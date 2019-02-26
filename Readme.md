@@ -18,14 +18,17 @@ $ tree ~/RinDocker
 
 # Shell Commands:
 ```bash
+# Create myname/base-r-tidyverse:3.5.2 image
 docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base .
 
+# Create myname/myimage image
 docker build -t myname/myimage .
 # If something is wrong or myScript.R is changed,
 # we need to run the following two commands again
 #  docker rmi myname/myimage
 #  docker build -t myname/myimage .
 
+# Execute R code in the container
 docker run -it --rm \
   -v ~/RinDocker/01_data:/01_data \
   -v ~/RinDocker/03_output:/03_output \
