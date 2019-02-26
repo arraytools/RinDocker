@@ -39,7 +39,8 @@ docker build -t myname/project001 -f Dockerfile .
 # the above command should be executed again.
 ```
 
-4. Run the R code in a disposable container
+4. Run the R code in a disposable container. The results will be 
+saved under '''03_output''' directory.
 ```bash
 docker run -it --rm \
   -v ~/RinDocker/01_data:/01_data \
