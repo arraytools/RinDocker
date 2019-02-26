@@ -32,6 +32,7 @@ docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base 
 ```
 
 3. Create a project specific image (myname/project001) which will host R code for the analysis.
+The R code is stored under '''02_code/myScript.R'''.
 ```bash
 docker build -t myname/project001 -f Dockerfile .
 # If something was wrong or myScript.R is changed,
