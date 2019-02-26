@@ -16,23 +16,34 @@ $ tree ~/RinDocker
 └── Readme.md
 ```
 
-# Shell Commands:
+# Instruction:
+
+1. Create a project directory (e.g. ~/RinDocker). Create 3 new subdirectories to 
+store data, code and output files separately.
 ```bash
-# Create myname/base-r-tidyverse:3.5.2 image
+mkdir -p ~/RinDocker/{01_data,02_code,03_output}
+```
+
+2. Create an intermediate image containing most useful OS level tools and R packages
+(myname/base-r-tidyverse:3.5.2).
+```bash
 docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base .
+```
 
-# Create myname/myimage image
-docker build -t myname/myimage .
-# If something is wrong or myScript.R is changed,
-# we need to run the following two commands again
-#  docker rmi myname/myimage
-#  docker build -t myname/myimage .
+3. Create a project specific image (myname/project001) which will host R code for the analysis.
+```bash
+docker build -t myname/project001 -f Dockerfile .
+# If something was wrong or myScript.R is changed,
+# the above command should be executed again.
+```
 
+4. Run the R code in a disposable container
+```bash
 # Execute R code in the container
 docker run -it --rm \
   -v ~/RinDocker/01_data:/01_data \
   -v ~/RinDocker/03_output:/03_output \
-   myname/myimage
+   myname/project001
 ```
 
 # File
