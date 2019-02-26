@@ -2,7 +2,7 @@ This framework here provides a way to repeat an analysis of a code written in R.
 
 # File Structure
 ```
-$ tree ~/R-Script-in-Docker
+$ tree ~/RinDocker
 ├── 01_data
 │   └── us-500.csv
 ├── 02_code
@@ -20,9 +20,9 @@ $ tree ~/R-Script-in-Docker
 
 ## Dockerfile
 
-We assume the intermediate docker image containing enough packages for our analysis.
+We assume the intermediate docker image containing necessary packages for our analysis.
 ```
-FROM oliverstatworx/base-r-tidyverse:latest
+FROM myname/base-r-tidyverse:3.5.2
 
 ## create directories
 RUN mkdir -p /01_data
@@ -52,8 +52,8 @@ docker build -t myname/myimage .
 #  docker build -t myname/myimage .
 
 docker run -it --rm \
-  -v ~/"R-Script-in-Docker"/01_data:/01_data \
-  -v ~/"R-Script-in-Docker"/03_output:/03_output \
+  -v ~/RinDocker/01_data:/01_data \
+  -v ~/RinDocker/03_output:/03_output \
    myname/myimage
 ```
 
