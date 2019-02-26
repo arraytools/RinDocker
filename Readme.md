@@ -16,7 +16,7 @@ $ tree ~/RinDocker
 └── Readme.md
 ```
 
-# Instruction:
+# Instruction
 
 1. Create a project directory (e.g. ~/RinDocker). Create 3 new subdirectories to 
 store data, code and output files separately.
@@ -25,7 +25,8 @@ mkdir -p ~/RinDocker/{01_data,02_code,03_output}
 ```
 
 2. Create an intermediate image containing most useful OS level tools and R packages
-(myname/base-r-tidyverse:3.5.2).
+(myname/base-r-tidyverse:3.5.2). Customize the tools by editing '''Dockerfile_base''' file and 
+R packages by editing '''02_code/install_packages.R''' file.
 ```bash
 docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base .
 ```
@@ -44,7 +45,7 @@ docker run -it --rm \
   -v ~/RinDocker/03_output:/03_output \
    myname/project001
 
-# Change the owership
+# Change the owership of output files
 sudo chown -R $USER:$USER 03_output/*
 ```
 
@@ -73,11 +74,11 @@ CMD Rscript /02_code/myScript.R
 * Put the input files in /01_data directory
 * Save the output files in /03_output directory
 
-# To Do:
+# To Do
 
 * Make the R script independent of the Docker image
 * Integrate packrat https://rstudio.github.io/packrat/
 
-# References:
+# References
 
 * https://www.statworx.com/de/blog/running-your-r-script-in-docker/
