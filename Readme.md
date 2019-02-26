@@ -18,21 +18,21 @@ $ tree ~/RinDocker
 
 # Instruction
 
-1. Create a project directory (e.g. ~/RinDocker). Create 3 new subdirectories to 
+1. Create a project directory (e.g. **~/RinDocker**). Create 3 new subdirectories to 
 store data, code and output files separately.
 ```bash
 mkdir -p ~/RinDocker/{01_data,02_code,03_output}
 ```
 
 2. Create an intermediate image containing most useful OS level tools and R packages
-(myname/base-r-tidyverse:3.5.2). Customize the tools by editing '''Dockerfile_base''' file and 
-R packages by editing '''02_code/install_packages.R''' file.
+(myname/base-r-tidyverse:3.5.2). Customize the tools by editing **Dockerfile_base** file and 
+R packages by editing **02_code/install_packages.R** file.
 ```bash
 docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base .
 ```
 
 3. Create a project specific image (myname/project001) which will host R code for the analysis.
-The R code is stored under '''02_code/myScript.R'''.
+The R code is stored under **02_code/myScript.R**.
 ```bash
 docker build -t myname/project001 -f Dockerfile .
 # If something was wrong or myScript.R is changed,
@@ -40,7 +40,7 @@ docker build -t myname/project001 -f Dockerfile .
 ```
 
 4. Run the R code in a disposable container. The results will be 
-saved under '''03_output''' directory.
+saved under **03_output** directory.
 ```bash
 docker run -it --rm \
   -v ~/RinDocker/01_data:/01_data \
