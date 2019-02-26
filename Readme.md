@@ -29,6 +29,8 @@ mkdir -p ~/RinDocker/{01_data,02_code,03_output}
 R packages by editing **02_code/install_packages.R** file. In this example, 3 R packages 
 (readr, dplyr, gplot2) are installed.
 ```bash
+# Remove old one if necessary
+# docker rmi myname/r-tidyverse:3.5.2
 docker build --network=host -t myname/r-tidyverse:3.5.2 -f Dockerfile_base .
 ```
 
@@ -37,9 +39,9 @@ The R code is stored under **02_code/myScript.R**. Note any missing R packages
 (*forcats* in this case) can be installed here through **Dockerfile** file.
 ```bash
 docker build --network=host -t myname/project001 -f Dockerfile .
-# If something was wrong or myScript.R is changed, run the following
-# docker rmi myname/project001
-# docker build -t myname/project001 -f Dockerfile .
+# If something myScript.R is changed, run the following again
+#   docker rmi myname/project001
+#   docker build -t myname/project001 -f Dockerfile .
 ```
 
 4. Run the R code in a disposable container. The results will be 
