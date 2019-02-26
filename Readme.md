@@ -66,10 +66,10 @@ COPY 02_code/myScript.R /02_code/myScript.R
 CMD Rscript /02_code/myScript.R
 ```
 
-## myScript.R
+## myScript.R (under 02_code directory)
 
 * Put the input files in /01_data directory
-* Save the output files in /02_output directory
+* Save the output files in /03_output directory
 
 # To Do:
 
