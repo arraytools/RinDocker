@@ -56,7 +56,25 @@ docker run -it --rm \
 sudo chown -R $USER:$USER 03_output/*
 ```
 
-# File
+# Files
+
+## Dockerfile_base
+```
+FROM r-base:3.5.2
+
+## install debian packages
+RUN apt-get update -qq && apt-get -y --no-install-recommends install \
+  libxml2-dev \
+  libcairo2-dev \
+  libcurl4-openssl-dev \
+  libssl-dev
+
+## copy files
+COPY 02_code/install_packages.R /install_packages.R
+
+## install R-packages
+RUN Rscript /install_packages.R
+```
 
 ## Dockerfile (project specific)
 
@@ -83,7 +101,7 @@ CMD Rscript /02_code/myScript.R
 * Put the input files in /01_data directory
 * Save the output files in /03_output directory
 
-# To Do
+# To Dos
 
 * Make the R script independent of the Docker image. This problem is less important
 since building the project specific image is quick.

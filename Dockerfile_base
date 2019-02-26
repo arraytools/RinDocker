@@ -1,11 +1,15 @@
 FROM r-base:3.5.2
 
 ## install debian packages
+##   libxml2-dev: rvest, xml, RCurl
+##   libcairo2-dev: cairo
+##   libcurl4-openssl-dev: rvest, RCurl, devtools
+##   libssl-dev: httr
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-libxml2-dev \
-libcairo2-dev \
-libcurl4-openssl-dev \
-libssl-dev
+  libxml2-dev \
+  libcairo2-dev \
+  libcurl4-openssl-dev \
+  libssl-dev
 
 ## copy files
 COPY 02_code/install_packages.R /install_packages.R
