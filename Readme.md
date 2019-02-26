@@ -39,11 +39,13 @@ docker build -t myname/project001 -f Dockerfile .
 
 4. Run the R code in a disposable container
 ```bash
-# Execute R code in the container
 docker run -it --rm \
   -v ~/RinDocker/01_data:/01_data \
   -v ~/RinDocker/03_output:/03_output \
    myname/project001
+
+# Change the owership
+sudo chown -R $USER:$USER 03_output/*
 ```
 
 # File
@@ -73,8 +75,7 @@ CMD Rscript /02_code/myScript.R
 
 # To Do:
 
-* Change the owner of the output from away root
-* Make the script independent of the Docker image
+* Make the R script independent of the Docker image
 * Integrate packrat https://rstudio.github.io/packrat/
 
 # References:
