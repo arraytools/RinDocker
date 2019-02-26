@@ -1,4 +1,4 @@
-This framework here provides a way to repeat an analysis of a code written in R.
+This framework here provides a way to reproduce an analysis for codes written in R.
 
 # File Structure
 ```
@@ -29,7 +29,7 @@ mkdir -p ~/RinDocker/{01_data,02_code,03_output}
 R packages by editing **02_code/install_packages.R** file. In this example, 3 R packages 
 (readr, dplyr, gplot2) are installed.
 ```bash
-# Remove old one if necessary
+# Remove an old image if it has existed already
 # docker rmi myname/r-tidyverse:3.5.2
 docker build --network=host -t myname/r-tidyverse:3.5.2 -f Dockerfile_base .
 ```
@@ -59,6 +59,8 @@ sudo chown -R $USER:$USER 03_output/*
 # Files
 
 ## Dockerfile_base
+
+We use R 3.5.2 as the base. The R version will be to tag our Docker image.
 ```
 FROM r-base:3.5.2
 
