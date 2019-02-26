@@ -26,17 +26,20 @@ mkdir -p ~/RinDocker/{01_data,02_code,03_output}
 
 2. Create an intermediate image containing most useful OS level tools and R packages
 (myname/base-r-tidyverse:3.5.2). Customize the tools by editing **Dockerfile_base** file and 
-R packages by editing **02_code/install_packages.R** file.
+R packages by editing **02_code/install_packages.R** file. In this example, 3 R packages 
+(readr, dplyr, gplot2) are installed.
 ```bash
-docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base .
+docker build --network=host -t myname/r-tidyverse:3.5.2 -f Dockerfile_base .
 ```
 
 3. Create a project specific image (myname/project001) which will host R code for the analysis.
-The R code is stored under **02_code/myScript.R**.
+The R code is stored under **02_code/myScript.R**. Note any missing R packages 
+(*forcats* in this case) can be installed here through **Dockerfile** file.
 ```bash
-docker build -t myname/project001 -f Dockerfile .
-# If something was wrong or myScript.R is changed,
-# the above command should be executed again.
+docker build --network=host -t myname/project001 -f Dockerfile .
+# If something was wrong or myScript.R is changed, run the following
+# docker rmi myname/project001
+# docker build -t myname/project001 -f Dockerfile .
 ```
 
 4. Run the R code in a disposable container. The results will be 
