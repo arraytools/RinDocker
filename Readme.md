@@ -83,8 +83,9 @@ CMD Rscript /02_code/myScript.R
 
 # To Do
 
-* Make the R script independent of the Docker image
-* Integrate packrat https://rstudio.github.io/packrat/
+* Make the R script independent of the Docker image. This problem is less important
+since building the project specific image is quick.
+* Integrate [packrat](https://rstudio.github.io/packrat/) in order to lock R package versions.
 
 # References
 
