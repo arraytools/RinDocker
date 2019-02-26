@@ -16,6 +16,22 @@ $ tree ~/RinDocker
 └── Readme.md
 ```
 
+# Shell Commands:
+```bash
+docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base .
+
+docker build -t myname/myimage .
+# If something is wrong or myScript.R is changed,
+# we need to run the following two commands again
+#  docker rmi myname/myimage
+#  docker build -t myname/myimage .
+
+docker run -it --rm \
+  -v ~/RinDocker/01_data:/01_data \
+  -v ~/RinDocker/03_output:/03_output \
+   myname/myimage
+```
+
 # File
 
 ## Dockerfile
@@ -40,22 +56,6 @@ CMD Rscript /02_code/myScript.R
 
 * Put the input files in /01_data directory
 * Save the output files in /02_output directory
-
-# Shell Commands:
-```bash
-docker build --network=host -t myname/base-r-tidyverse:3.5.2 -f Dockerfile_base .
-
-docker build -t myname/myimage .
-# If something is wrong or myScript.R is changed,
-# we need to run the following two commands again
-#  docker rmi myname/myimage
-#  docker build -t myname/myimage .
-
-docker run -it --rm \
-  -v ~/RinDocker/01_data:/01_data \
-  -v ~/RinDocker/03_output:/03_output \
-   myname/myimage
-```
 
 # To Do:
 
